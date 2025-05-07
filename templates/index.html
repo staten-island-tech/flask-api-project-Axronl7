@@ -1,34 +1,70 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>First 150 Pokémon</title>
-    <!-- Link to your CSS stylesheet -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <h1>First 150 Pokémon</h1>
-      <div class="card-container">
-        <!-- Loop through each Pokémon and wrap each card in a link -->
-        {% for pokemon in pokemons %}
-        <a
-          href="{{ url_for('pokemon_detail', id=pokemon.id) }}"
-          class="card-link"
-        >
-          <div class="card">
-            <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" />
-            <div class="card-body">
-              <h5 class="card-title">{{ pokemon.name }}</h5>
-              <p class="card-text">ID: {{ pokemon.id }}</p>
-            </div>
-          </div>
-        </a>
-        {% endfor %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ agent.name }} Details</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>{{ agent.name }} Details</h1>
+
+    <div class="agent-detail">
+      <div class="agent-header">
+        <img src="{{ agent.image }}" alt="{{ agent.name }}" class="agent-img" />
+        <div class="agent-info">
+          <p><strong>Role:</strong> {{ agent.role }}</p>
+          <p><strong>Abilities:</strong> 
+            {% for ability in agent.abilities %}
+              <span>{{ ability.name }}{{ loop.last ? '' : ',' }}</span>
+            {% endfor %}
+          </p>
+        </div>
       </div>
+
+      <!-- Stats Chart Section (if applicable) -->
+      <div class="agent-abilities">
+        <canvas id="abilitiesChart"></canvas>
+      </div>
+
+      <p><a href="{{ url_for('index') }}" class="back-link">Back to all Agents</a></p>
     </div>
-  </body>
+  </div>
+
+  <!-- Include Chart.js from a CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Example: Generate a chart for abilities or stats (customize based on your data)
+    const abilities = {{ agent.abilities | tojson }};
+    const abilityNames = abilities.map(ability => ability.name);
+    const abilityValues = abilities.map(ability => ability.powerLevel || 0); // Example stat if available
+
+    const ctx = document.getElementById('abilitiesChart').getContext('2d');
+    const abilitiesChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: abilityNames,
+        datasets: [{
+          label: 'Ability Power Levels',
+          data: abilityValues,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
 </html>
+

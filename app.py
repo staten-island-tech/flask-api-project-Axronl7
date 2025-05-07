@@ -5,60 +5,53 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    # Get the first 150 Pokémon from the API
-    response = requests.get("https://valorant-api.com/v1/agents?limit=150")
-    data = response.json()
-    agent_list = data['results']
-    
-    # Create a list to hold Pokémon details
-    agents = []
-    
-    for agent in agents_list:
-        # Each Pokémon URL looks like "https://pokeapi.co/api/v2/pokemon/1/"
-        url = agent ['url']
-        parts = url.strip("/").split("/")
-        id = parts[-1]  # The last part is the Pokémon's ID
-        
-        # Create an image URL using the Pokémon's ID
-        image_url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png"
-        
-        agents.append({
-            'name': agent['name'].capitalize(),
-            'id': id,
-            'image': image_url
-        })
-    
-    # Send the Pokémon list to the index.html page
-    return render_template("index.html", agents=agents)
+    # Get the list of Valorant agents from the API
+    response = requests.get("https://valorant-api.com/v1/agents?isPlayableCharacter=true")
+    data = response.json()  # Parse JSON response from the API
+    agent_list = data['data']  # Extract the list of agents from the response
 
-# New route: When a user clicks a Pokémon card, this page shows more details and a stats chart
-@app.route("/pokemon/<int:id>")
-def agent_detail(id):
-    # Get detailed info for the Pokémon using its id
-    response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{id}")
-    data = response.json()
-    
-    # Extract extra details like types, height, and weight
-    types = [t['type']['name'] for t in data['types']]
-    ability = data.get('ability')
-    weight = data.get('weight')
-    name = data.get('name').capitalize()
-    image_url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png"
-    
-    # Extract base stats for the chart (e.g., hp, attack, defense, etc.)
-    stat_names = [stat['stat']['name'] for stat in data['stats']]
-    stat_values = [stat['base_stat'] for stat in data['stats']]
-    
-    # Send all details to the pokemon.html template
+    agents = []  # List to store the agents' basic information
+    agents_by_role = {}  # Dictionary to group agents by their role
+
+    # Loop through each agent in the list
+    for agent in agent_list:
+        role = agent['role']['displayName'] if agent['role'] else "No Role"
+        agent_info = {
+            'name': agent['displayName'],
+            'id': agent['uuid'],  # Unique identifier for the agent
+            'image': agent['displayIcon'],  # Icon image of the agent
+            'role': role
+        }
+        agents.append(agent_info)
+
+        # Group agents by their role
+        if role not in agents_by_role:
+            agents_by_role[role] = []
+        agents_by_role[role].append(agent_info)
+
+    return render_template("index.html", agents=agents, agents_by_role=agents_by_role)
+
+
+@app.route("/agent/<uuid>")
+def agent_detail(uuid):
+    # Get detailed information for a specific agent using UUID
+    response = requests.get(f"https://valorant-api.com/v1/agents/{uuid}")
+    data = response.json()  # Parse JSON response
+    agent = data['data']
+
+    # Pass agent details to the template
     return render_template("agent.html", agent={
-        'name': name,
-        'id': id,
-        'image': image_url,
-        'types': types,
-        'height': height,
-        'weight': weight,
-        'stat_names': stat_names,
-        'stat_values': stat_values
+        'name': agent['displayName'],
+        'description': agent['description'],
+        'image': agent['fullPortrait'],  # Full portrait image for detailed view
+        'role': agent['role']['displayName'] if agent['role'] else "No Role",
+        'abilities': [
+            {
+                'name': ability['displayName'],
+                'description': ability['description'],
+                'icon': ability['displayIcon']
+            } for ability in agent['abilities'] if ability['displayName']  # Skip empty abilities
+        ]
     })
 
 if __name__ == '__main__':

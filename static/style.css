@@ -73,25 +73,219 @@ body {
     color: #555;
     margin-top: 5px;
   }
-  
-  /* Pokémon detail page styling */
-  .pokemon-detail {
-    text-align: center;
-  }
-  
-  .pokemon-detail img {
-    width: 200px;
+  .agent-detail img {
+    max-width: 300px;
     height: auto;
-    margin-bottom: 20px;
   }
   
-  .pokemon-detail p {
-    font-size: 1.1em;
+  .abilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
   }
   
-  /* Chart container styling */
-  .pokemon-stats {
-    width: 100%;
-    max-width: 600px;
-    margin: 40px auto;
+  .ability {
+    border: 1px solid #000000;
+    padding: 10px;
+    width: 200px;
   }
+  
+  .ability-icon {
+    background-color: #060016;
+    width: 40px;
+    height: 40px;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .agent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
+  
+  .agent-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .agent-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .agent-card img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: contain;
+  }
+  
+  .agent-card h2 {
+    margin: 10px 0 5px;
+    font-size: 1.2em;
+  }
+  
+  .agent-card p {
+    font-size: 0.95em;
+    color: #555;
+  }
+  .ability-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .ability-card:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .ability-icon {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .ability-details {
+    display: none;
+    margin-top: 10px;
+  }
+  
+  .ability-card.open .ability-details {
+    display: block;
+  }
+  
+  
+  
+  
+  
+  
+  
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #1d3557;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.agent-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Header Section with Agent Info */
+.agent-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.agent-img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 3px solid #1d3557;
+}
+
+.agent-info {
+  flex: 1;
+}
+
+.agent-info p {
+  font-size: 1.2rem;
+  margin: 8px 0;
+}
+
+.agent-info strong {
+  color: #1d3557;
+}
+
+/* Abilities Chart Section */
+.agent-abilities {
+  margin-top: 30px;
+  padding: 30px;
+  background-color: #f1f5f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Back Link Styling */
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: #004d99;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .agent-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .agent-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .agent-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+}
