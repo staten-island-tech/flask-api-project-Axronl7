@@ -391,3 +391,29 @@ h1 {
 .hidden {
   display: none;
 }
+
+
+
+
+/* abilities.css */
+
+/* Styling for the abilities section */
+.ability-item {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.ability-description {
+  display: none;
+  margin-left: 20px;
+  font-style: italic;
+  color: #555;
+}
+
+.ability-item:hover {
+  color: #007bff;
+}
+
+
+
+
