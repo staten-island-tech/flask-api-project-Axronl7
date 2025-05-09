@@ -1,83 +1,4 @@
-/* General page styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Container styling */
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-  }
-  
-  /* Title styling */
-  h1 {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  /* Card container styling */
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  /* Remove link default styles */
-  .card-link {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  /* Individual card styling */
-  .card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 200px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-  }
-  
-  /* Hover effect for cards */
-  .card:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Card image styling */
-  .card img {
-    width: 100%;
-    height: auto;
-  }
-  
-  /* Card body styling */
-  .card-body {
-    padding: 15px;
-  }
-  
-  /* Card title styling */
-  .card-title {
-    font-size: 1.2em;
-    margin: 0;
-  }
-  
-  /* Card text styling */
-  .card-text {
-    color: #555;
-    margin-top: 5px;
-  }
-  .agent-detail img {
-    max-width: 300px;
-    height: auto;
-  }
-  
+
   .abilities {
     display: flex;
     flex-wrap: wrap;
@@ -95,92 +16,7 @@ body {
     width: 40px;
     height: 40px;
   }
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .agent-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
-  }
-  
-  .agent-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    color: #000;
-    border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  
-  .agent-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  
-  .agent-card img {
-    max-width: 100%;
-    height: 150px;
-    object-fit: contain;
-  }
-  
-  .agent-card h2 {
-    margin: 10px 0 5px;
-    font-size: 1.2em;
-  }
-  
-  .agent-card p {
-    font-size: 0.95em;
-    color: #555;
-  }
-  .ability-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .ability-card:hover {
-    background-color: #f9f9f9;
-  }
-  
-  .ability-icon {
-    width: 50px;
-    height: 50px;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .ability-details {
-    display: none;
-    margin-top: 10px;
-  }
-  
-  .ability-card.open .ability-details {
-    display: block;
-  }
-  
-  
-  
-  
+
   
   
   body {
@@ -244,7 +80,7 @@ body {
 }
 
 .abilities-list li {
-    margin: 10px 0;
+    margin: 13px 0;
     font-size: 1.1rem;
     color: #333;
     display: flex;
@@ -274,6 +110,7 @@ body {
 
 .agent-abilities {
     margin-top: 30px;
+
 }
 
 h5 {
@@ -302,118 +139,127 @@ h5 {
 
 
 
-
-/* Custom Styles for a Sleek Look */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f7fc;
-  color: #333;
-  padding-top: 20px;
-}
-
-h1 {
-  text-align: center;
-  font-size: 3rem;
-  color: #2c3e50;
-  margin-bottom: 40px;
-  font-weight: bold;
-}
-
-.search-container {
-  max-width: 600px;
-  margin: 0 auto 40px auto;
+  background: url('/static/images/valorant-background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
+  min-height: 100vh;
 }
 
-.search-bar {
+/* Optional dark overlay to improve text visibility */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 30px;
-  border: 2px solid #ccc;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
+  background-color: rgba(10, 10, 10, 0.75);
+  z-index: -1;
 }
 
-.search-bar:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0px 2px 12px rgba(52, 152, 219, 0.5);
-}
-
-.role-section h2 {
-  font-size: 2.5rem;
-  color: #3498db;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.agent-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.agent-card {
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-decoration: none;
-}
-
-.agent-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-}
-
-.agent-card img {
-  border-bottom: 2px solid #f1f1f1;
-}
-
-.agent-card .card-body {
-  padding: 20px;
-}
-
-.agent-card .card-title {
-  font-size: 1.25rem;
+/* Header */
+h1 {
+  color: #ff4655;
   font-weight: bold;
-  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Search bar styling */
+.search-bar {
+  max-width: 500px;
+  margin: 0 auto;
+  border: 2px solid #ff4655;
+  background-color: #1c1c1c;
+  color: white;
+}
+
+/* Agent card */
+.agent-card.card {
+  background-color: rgba(30, 30, 30, 0.9);
+  color: white;
+  border: 1px solid #ff4655;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.agent-card.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px #ff4655;
+}
+
+/* Role card */
+.role-card.card {
+  background-color: rgba(40, 40, 40, 0.9);
+  color: white;
+  border: 2px solid #ff4655;
+  cursor: pointer;
+}
+
+/* Card header for roles */
+.card-header h3 {
+  color: #ff4655;
+  font-weight: bold;
+}
+
+/* Muted text */
+.card-text.text-muted {
+  color: #ccc !important;
+}
+
+/* Hide agent card (used by JS filter) */
+.agent-card.hidden {
+  display: none;
+}
+
+
+
+
+/* Agent card */
+.agent-card.card {
+  background-color: rgba(30, 30, 30, 0.9);
+  color: white;
+  border: 1px solid #ff4655;
+  transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 240px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.agent-card.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px #ff4655;
+}
+
+/* Card image */
+.agent-card img {
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Card text */
+.agent-card .card-title {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 .agent-card .card-text {
-  font-size: 1rem;
-  color: #7f8c8d;
+  font-size: 0.85rem;
+  color: #ccc;
 }
 
-.hidden {
-  display: none;
+/* Responsive tweaks for tighter layout */
+@media (min-width: 768px) {
+  .row-cols-md-2 > * {
+    flex: 0 0 auto;
+    width: 50%;
+  }
 }
-
-
-
-
-/* abilities.css */
-
-/* Styling for the abilities section */
-.ability-item {
-  cursor: pointer;
-  margin-bottom: 10px;
+@media (min-width: 992px) {
+  .row-cols-lg-3 > * {
+    flex: 0 0 auto;
+    width: 33.3333%;
+  }
 }
-
-.ability-description {
-  display: none;
-  margin-left: 20px;
-  font-style: italic;
-  color: #555;
-}
-
-.ability-item:hover {
-  color: #007bff;
-}
-
-
-
-
