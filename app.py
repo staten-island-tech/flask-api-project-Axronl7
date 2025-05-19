@@ -68,12 +68,11 @@ def agent_detail(uuid):
         return render_template("agent.html", agent=agent_details)
 
     except requests.exceptions.RequestException as e:
-        # Handle the exception if API call fails
+
         print(f"Error fetching agent details: {e}")
         abort(500, description="Error fetching agent details from the API")
 
     except Exception as e:
-        # Handle any other unforeseen errors
         print(f"Unexpected error: {e}")
         abort(500, description="An unexpected error occurred")
 
