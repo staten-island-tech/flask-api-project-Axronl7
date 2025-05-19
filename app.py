@@ -3,34 +3,31 @@ import requests
 
 app = Flask(__name__)
 
-# The base URL for the Valorant API
 BASE_URL = "https://valorant-api.com/v1/agents"
 
 @app.route("/")
 def index():
-    # Get the list of Valorant agents from the API
     try:
         response = requests.get(f"{BASE_URL}?isPlayableCharacter=true")
-        response.raise_for_status()  # Will raise an error for bad status codes
-        data = response.json()  # Parse JSON response from the API
+        response.raise_for_status()  
+        data = response.json() 
 
-        agent_list = data.get('data', [])  # Safely get agents' data
+        agent_list = data.get('data', []) 
 
-        agents = []  # List to store the agents' basic information
-        agents_by_role = {}  # Dictionary to group agents by their role
+        agents = []
+        agents_by_role = {}  
 
-        # Loop through each agent in the list and organize their information
+
         for agent in agent_list:
             role = agent.get('role', {}).get('displayName', "No Role")
             agent_info = {
                 'name': agent.get('displayName'),
-                'id': agent.get('uuid'),  # Unique identifier for the agent
-                'image': agent.get('displayIcon'),  # Icon image of the agent
+                'id': agent.get('uuid'), 
+                'image': agent.get('displayIcon'),  
                 'role': role
             }
             agents.append(agent_info)
 
-            # Group agents by their role
             if role not in agents_by_role:
                 agents_by_role[role] = []
             agents_by_role[role].append(agent_info)
@@ -38,7 +35,7 @@ def index():
         return render_template("index.html", agents=agents, agents_by_role=agents_by_role)
 
     except requests.exceptions.RequestException as e:
-        # Handle the exception if API call fails
+
         print(f"Error fetching agents: {e}")
         abort(500, description="Error fetching agent data from the API")
 
@@ -46,7 +43,7 @@ def index():
 def agent_detail(uuid):
     try:
         response = requests.get(f"{BASE_URL}/{uuid}")
-        response.raise_for_status()  # Will raise an error for bad status codes
+        response.raise_for_status()  
         data = response.json()
 
         agent = data.get('data')
