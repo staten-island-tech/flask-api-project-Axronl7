@@ -3,11 +3,12 @@ import requests
 
 app = Flask(__name__)
 
+BASE_URL = "https://valorant-api.com/v1/agent"
 
 @app.route("/")
 def index():
     try:
-        response = requests.get(f"{https://valorant-api.com/v1/agent}?isPlayableCharacter=true")
+        response = requests.get(f"{BASE_URL}?isPlayableCharacter=true")
         response.raise_for_status()  
         data = response.json() 
 
@@ -41,7 +42,7 @@ def index():
 @app.route("/agent/<uuid>")
 def agent_detail(uuid):
     try:
-        response = requests.get(f"{https://valorant-api.com/v1/agent}/{uuid}")
+        response = requests.get(f"{BASE_URL}/{uuid}")
         response.raise_for_status()  
         data = response.json()
 
