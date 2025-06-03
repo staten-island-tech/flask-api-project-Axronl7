@@ -66,7 +66,8 @@ Open or create your `app.py` file. Here’s what the code looks like, and we’l
 
 ```python
 from flask import Flask, render_template
-import requests
+
+
 
 app = Flask(__name__)
 
